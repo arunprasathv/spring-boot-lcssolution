@@ -1,0 +1,55 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'maven'
+apply plugin: 'spring-boot'
+
+buildscript {
+ext {
+	springBootVersion 		= '1.4.0.RELEASE'
+	springfoxSwagger2Version   = '2.1.1'
+	springfoxSwagger2UIVersion = '2.1.1'
+	}
+	
+   repositories {
+        maven { url "http://repo.spring.io/libs-release" }
+        maven { url "https://artifactory.io.comcast.net/libs-all" }
+        maven{url "http://artifactory.io.comcast.net/plugins-release"}
+        maven { url "https://artifactory.io.comcast.net/plugins-release-local" }
+        maven { url "https://artifactory.io.comcast.net/libs-snapshot-local" }
+    }
+
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath("org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.2.1")
+    }
+}
+
+version = '1.0'
+
+
+repositories {
+    
+    maven { url "http://repo.spring.io/libs-release" }
+        maven{url 'http://artifactory.io.comcast.net/plugins-release'}
+             maven { url "https://artifactory.io.comcast.net/plugins-release-local" }
+     maven { url "https://artifactory.io.comcast.net/libs-snapshot-local" }
+
+}
+ext {
+	springfoxSwagger2Version   = '2.1.1'
+	springfoxSwagger2UIVersion = '2.1.1'
+}
+dependencies {
+ 	compile("org.springframework.boot:spring-boot-starter-tomcat")
+	compile("org.springframework.boot:spring-boot-starter-actuator:${springBootVersion}")
+	compile("org.springframework.cloud:spring-cloud-config-client:1.2.3.RELEASE")
+     
+	//Swagger
+	compile("io.springfox:springfox-swagger-ui:${springfoxSwagger2UIVersion}")
+	compile("io.springfox:springfox-swagger2:${springfoxSwagger2Version}")
+	compile("org.springframework.boot:spring-boot-starter-security")
+	testCompile("org.springframework.boot:spring-boot-starter-test")
+}
+springBoot {
+    executable = true
+}
