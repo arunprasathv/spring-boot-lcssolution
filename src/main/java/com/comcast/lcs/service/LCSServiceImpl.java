@@ -138,7 +138,7 @@ public class LCSServiceImpl implements LCSService {
     {
         int[][] l = new int[str1.length][str2.length];
         int lcs = -1;
-        String lcsSubstr = "";
+        String lcsStr = "";
         int end = -1;
 
         for (int i = 0; i < str1.length; i++)
@@ -165,10 +165,10 @@ public class LCSServiceImpl implements LCSService {
         }
         //end-lcs+1 will give the start position of the substring
         for (int i = end - lcs + 1; i <= end; i++){
-            lcsSubstr += str1[i];
+            lcsStr += str1[i];
         }
 
-        return lcsSubstr;
+        return lcsStr;
     }
 	private String mySubString(String myString, int start, int length) {
 	    return myString.substring(start, Math.min(start + length, myString.length()));
